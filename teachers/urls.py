@@ -1,6 +1,7 @@
-from django.urls import re_path
 from django.urls import path
-from .views import generate_teachers, create_teacher, get_teachers, update_teacher, delete_teacher
+from django.urls import re_path
+
+from .views import create_teacher, delete_teacher, generate_teachers, get_teachers, update_teacher
 
 app_name = 'teachers'
 

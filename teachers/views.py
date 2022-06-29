@@ -1,11 +1,13 @@
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render
+from django.urls import reverse
+
 from faker import Faker
 
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect
-from django.urls import reverse
 from webargs.djangoparser import use_args
 from webargs.fields import Str
+
 from .forms import TeacherCreateForm
 from .models import Teacher
 

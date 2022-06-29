@@ -1,8 +1,10 @@
-from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
+
 from webargs.djangoparser import use_args
 from webargs.fields import Int, Str
+
 from .forms import GroupCreateForm
 from .models import Group
 
