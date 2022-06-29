@@ -20,7 +20,6 @@ class StudentCreateForm(forms.ModelForm):
             'birthday': forms.DateInput(attrs={'type': 'date'})
         }
 
-    # cleaned_date
     def clean_first_name(self):
         fn = self.cleaned_data['first_name']
         return fn.title()
@@ -30,9 +29,6 @@ class StudentCreateForm(forms.ModelForm):
         return ln.title()
 
     def clean_phone_number(self):
-        pn = self.cleaned_data['phone_number']
-        lst = []
-        for element in pn:
-            if element in '()+ 0123456789':
-                lst.append(element)
-        return ''.join(lst)
+        phone_number = self.cleaned_data['phone_number']
+        result = ''.join([char for char in phone_number if char.isdigit()])
+        return result
