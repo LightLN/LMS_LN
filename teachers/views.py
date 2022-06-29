@@ -1,11 +1,11 @@
 from django.http import HttpResponse
 from faker import Faker
 
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from webargs.djangoparser import use_args
-from webargs.fields import Int, Str
+from webargs.fields import Str
 from .forms import TeacherCreateForm
 from .models import Teacher
 
@@ -59,3 +59,26 @@ def create_teacher(request):
         template_name='teachers/create.html',
         context={'form': form}
     )
+
+
+def update_teacher(request, pk):
+    teacher = get_object_or_404(Teacher, pk=pk)
+    if request.method == 'GET':
+        form = TeacherCreateForm(instance=teacher)
+    else:
+        form = TeacherCreateForm(request.POST, instance=teacher)
+        if form.is_valid():
+            form.save()
+
+            return HttpResponseRedirect(reverse('teachers:list'))
+
+    return render(request, 'teachers/update.html', {'form': form})
+
+
+def delete_teacher(request, pk):
+    teacher = get_object_or_404(Teacher, pk=pk)
+    if request.method == 'POST':
+        teacher.delete()
+        return HttpResponseRedirect(reverse('teachers:list'))
+
+    return render(request, 'teachers/delete.html', {'teacher': teacher})
