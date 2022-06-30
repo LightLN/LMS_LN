@@ -1,4 +1,5 @@
 from django import forms
+from django_filters import FilterSet
 
 from .models import Student
 
@@ -32,3 +33,12 @@ class StudentCreateForm(forms.ModelForm):
         phone_number = self.cleaned_data['phone_number']
         result = ''.join([char for char in phone_number if char.isdigit()])
         return result
+
+
+class StudentFilterForm(FilterSet):
+    class Meta:
+        model = Student
+        fields = {
+            'first_name': ['exact', 'icontains'],
+            'last_name': ['exact', 'startswith'],
+        }
