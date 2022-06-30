@@ -2,8 +2,6 @@ import datetime
 
 from django.db import models
 
-from teachers.models import Teacher
-
 
 class Group(models.Model):
     name = models.CharField(max_length=10)
@@ -14,4 +12,4 @@ class Group(models.Model):
         db_table = 'groups'
 
     def __str__(self):
-        return f'{self.name} {self.number_of_lessons}'
+        return self.name
