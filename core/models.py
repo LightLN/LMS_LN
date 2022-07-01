@@ -1,8 +1,9 @@
+from core.validators import phone_number_validator
+
 from django.core.validators import MinLengthValidator
 from django.db import models
-from faker import Faker
 
-from core.validators import phone_number_validator
+from faker import Faker
 
 
 class BaseModel(models.Model):
