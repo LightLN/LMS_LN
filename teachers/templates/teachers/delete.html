@@ -7,7 +7,7 @@
         {% csrf_token %}
         <p>Do you really want to remove teacher
             <span style="font-style: italic; font-weight: bold;">
-                {{ teacher.first_name }} {{ teacher.last_name }}
+                {{ object.first_name }} {{ object.last_name }}
             </span>?
         </p>
         <div class="mt-2">
