@@ -11,8 +11,10 @@
             <th style="width: 20%">Last name</th>
             <th style="width: 20%">Speciality</th>
             <th style="width: 10%">Group</th>
-            <th style="width: 5%"><i class="bi bi-pencil-fill"></i></th>
-            <th style="width: 5%"><i class="bi bi-trash3-fill"></i></th>
+            {% if user.is_authenticated %}
+                <th style="width: 5%"><i class="bi bi-pencil-fill"></i></th>
+                <th style="width: 5%"><i class="bi bi-trash3-fill"></i></th>
+            {% endif %}
         </tr>
     </thead>
     {% for teacher in object_list %}
@@ -22,8 +24,10 @@
             <td>{{ teacher.last_name }}</td>
             <td>{{ teacher.speciality }}</td>
             <td>{% if teacher.group %}{{ teacher.group }}{% endif %}</td>
-            <td><a href="{% url 'teachers:update' teacher.pk %}">Edit</a></td>
-            <td><a href="{% url 'teachers:delete' teacher.pk %}">Delete</a></td>
+            {% if user.is_authenticated %}
+                <td><a href="{% url 'teachers:update' teacher.pk %}">Edit</a></td>
+                <td><a href="{% url 'teachers:delete' teacher.pk %}">Delete</a></td>
+            {% endif %}
         </tr>
     {% endfor %}
     </table>

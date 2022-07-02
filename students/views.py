@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.views.generic import DeleteView
@@ -22,21 +23,21 @@ class ListStudentView(ListView):
         return students_filter
 
 
-class CreateStudentView(CreateView):
+class CreateStudentView(LoginRequiredMixin, CreateView):
     model = Student
     form_class = StudentCreateForm
     success_url = reverse_lazy('students:list')
     template_name = 'students/create.html'
 
 
-class UpdateStudentView(UpdateView):
+class UpdateStudentView(LoginRequiredMixin, UpdateView):
     model = Student
     form_class = StudentCreateForm
     success_url = reverse_lazy('students:list')
     template_name = 'students/update.html'
 
 
-class DeleteStudentView(DeleteView):
+class DeleteStudentView(LoginRequiredMixin, DeleteView):
     model = Student
     success_url = reverse_lazy('students:list')
     template_name = 'students/delete.html'
