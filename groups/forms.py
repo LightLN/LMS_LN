@@ -23,5 +23,3 @@ class GroupCreateForm(forms.ModelForm):
         }
 
         exclude = ['headman']
-
-

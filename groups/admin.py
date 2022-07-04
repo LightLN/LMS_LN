@@ -1,7 +1,10 @@
 from django.contrib import admin
 
 from groups.models import Group
+
 from students.models import Student
+
+from teachers.models import Teacher
 
 
 class StudentsInlineTable(admin.TabularInline):
@@ -12,10 +15,28 @@ class StudentsInlineTable(admin.TabularInline):
         'birthday',
         'phone_number',
     ]
+    extra = 0
+    readonly_fields = fields
+
+    def has_add_permission(self, request, obj):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+
+class TeachersInlineTable(admin.TabularInline):
+    model = Teacher
+    fields = [
+        'first_name',
+        'last_name',
+        'speciality',
+        'phone_number',
+    ]
 
     extra = 0
     readonly_fields = fields
-   
+
     def has_add_permission(self, request, obj):
         return False
 
@@ -29,7 +50,7 @@ class GroupAdmin(admin.ModelAdmin):
         'start_date',
         'number_of_lessons',
         'headman',
-        'course'
+        'course',
     ]
 
     fields = [
@@ -38,7 +59,15 @@ class GroupAdmin(admin.ModelAdmin):
         ('headman', 'course')
     ]
 
-    inlines = [StudentsInlineTable]
+    search_fields = [
+        'name',
+    ]
+
+    list_filter = [
+        'course',
+    ]
+
+    inlines = [StudentsInlineTable, TeachersInlineTable]
 
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)

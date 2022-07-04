@@ -21,7 +21,7 @@ class Group(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        related_name='course'
+        related_name='group'
     )
 
     class Meta:
