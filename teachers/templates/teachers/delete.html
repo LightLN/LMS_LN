@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete teacher{% endblock %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <p>Do you really want to remove teacher
+            <span style="font-style: italic; font-weight: bold;">
+                {{ teacher.first_name }} {{ teacher.last_name }}
+            </span>?
+        </p>
+        <div class="mt-2">
+            <input class="btn btn-outline-danger" type="submit" value="Agree">
+            <a class="btn btn-outline-primary" href="{% url 'teachers:list' %}">Cancel</a>
+        </div>
+    </form>
+{% endblock %}

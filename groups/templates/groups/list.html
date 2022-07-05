@@ -20,8 +20,8 @@
             <td>{{ group.name }}</td>
             <td>{{ group.start_date }}</td>
             <td>{{ group.number_of_lessons }}</td>
-{#            <td><a href="{% url 'groups:update' group.pk %}">Edit</a></td>#}
-{#            <td><a href="{% url 'groups:delete' group.pk %}">Delete</a></td>#}
+            <td><a href="{% url 'groups:update' group.pk %}">Edit</a></td>
+            <td><a href="{% url 'groups:delete' group.pk %}">Delete</a></td>
         </tr>
     {% endfor %}
     </table>
