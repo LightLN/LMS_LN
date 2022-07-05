@@ -4,13 +4,18 @@ from teachers.models import Teacher
 
 
 class TeacherCreateForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(TeacherCreateForm, self).__init__(*args, **kwargs)
+        self.fields['group'].required = False
+
     class Meta:
         model = Teacher
         fields = [
             'first_name',
             'last_name',
             'speciality',
-            'phone_number'
+            'phone_number',
+            'group'
         ]
 
     def clean_phone_number(self):

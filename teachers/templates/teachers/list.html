@@ -9,7 +9,8 @@
             <th style="width: 5%">N</th>
             <th style="width: 25%">First name</th>
             <th style="width: 25%">Last name</th>
-            <th style="width: 5%">Speciality</th>
+            <th style="width: 15%">Speciality</th>
+            <th style="width: 10%">Group</th>
             <th style="width: 5%"><i class="bi bi-pencil-fill"></i></th>
             <th style="width: 5%"><i class="bi bi-trash3-fill"></i></th>
         </tr>
@@ -20,6 +21,7 @@
             <td>{{ teacher.first_name }}</td>
             <td>{{ teacher.last_name }}</td>
             <td>{{ teacher.speciality }}</td>
+            <td>{% if teacher.group %}{{ teacher.group }}{% endif %}</td>
             <td><a href="{% url 'teachers:update' teacher.pk %}">Edit</a></td>
             <td><a href="{% url 'teachers:delete' teacher.pk %}">Delete</a></td>
         </tr>

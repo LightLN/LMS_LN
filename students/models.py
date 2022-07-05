@@ -9,6 +9,8 @@ from django.db import models
 
 from faker import Faker
 
+from groups.models import Group
+
 from students.validators import phone_number_validator
 
 
@@ -30,6 +32,7 @@ class Student(models.Model):
         validators=[adult_validator]
     )
     phone_number = models.CharField(max_length=25, null=True, validators=[phone_number_validator])
+    group = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True, related_name='students')
 
     class Meta:
         verbose_name = 'student'
