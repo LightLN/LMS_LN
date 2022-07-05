@@ -1,4 +1,4 @@
-from core.validators import phone_number_validator
+from core.validators import phone_number_validator       # noqa
 
 from django.core.validators import MinLengthValidator
 from django.db import models
@@ -25,7 +25,7 @@ class BaseModel(models.Model):
     phone_number = models.CharField(
         max_length=25,
         null=True,
-        validators=[phone_number_validator]
+        # validators=[phone_number_validator]
     )
 
     @classmethod

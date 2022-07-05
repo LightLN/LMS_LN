@@ -7,15 +7,15 @@
     <thead>
         <tr>
             <th style="width: 5%">N</th>
-            <th style="width: 25%">First name</th>
-            <th style="width: 25%">Last name</th>
-            <th style="width: 15%">Speciality</th>
+            <th style="width: 20%">First name</th>
+            <th style="width: 20%">Last name</th>
+            <th style="width: 20%">Speciality</th>
             <th style="width: 10%">Group</th>
             <th style="width: 5%"><i class="bi bi-pencil-fill"></i></th>
             <th style="width: 5%"><i class="bi bi-trash3-fill"></i></th>
         </tr>
     </thead>
-    {% for teacher in teachers %}
+    {% for teacher in object_list %}
         <tr>
             <td>{{ forloop.counter }}</td>
             <td>{{ teacher.first_name }}</td>
