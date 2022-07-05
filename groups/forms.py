@@ -1,4 +1,5 @@
 from django import forms
+
 from groups.models import Group
 
 
@@ -10,4 +11,3 @@ class GroupCreateForm(forms.ModelForm):
             'start_date',
             'number_of_lessons'
         ]
-
