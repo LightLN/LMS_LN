@@ -1,7 +1,5 @@
 import datetime
 
-from core.validators import adult_validator
-
 from dateutil.relativedelta import relativedelta
 
 from django.core.validators import MinLengthValidator
@@ -9,7 +7,8 @@ from django.db import models
 
 from faker import Faker
 
-from .validators import phone_number_validator
+from core.validators import adult_validator
+from students.validators import phone_number_validator
 
 
 class Student(models.Model):
@@ -28,7 +27,6 @@ class Student(models.Model):
     birthday = models.DateField(
         default=datetime.date.today,
         validators=[adult_validator]
-        # validators=[AdultValidator(20)]
     )
     phone_number = models.CharField(max_length=25, null=True, validators=[phone_number_validator])
 
@@ -50,7 +48,7 @@ class Student(models.Model):
             st = Student(
                 first_name=fk.first_name(),
                 last_name=fk.last_name(),
-                age=fk.random_int(min=18, max=45),
+                # age=fk.random_int(min=18, max=45),
                 birthday=fk.date_between(start_date='-65y', end_date='-15y'),
                 phone_number=fk.phone_number()
             )
