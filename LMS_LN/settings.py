@@ -37,14 +37,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'teachers',
-    'groups',
-    'students.apps.StudentsConfig',
 
     'django_extensions',
     'crispy_forms',
     'crispy_bootstrap5',
     'django_filters',
+    'debug_toolbar',
+
+    'core.apps.CoreConfig',
+    'teachers.apps.TeachersConfig',
+    'groups.apps.GroupsConfig',
+    'students.apps.StudentsConfig',
+    'courses.apps.CoursesConfig',
 ]
 
 MIDDLEWARE = [
@@ -55,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'LMS_LN.urls'
@@ -138,3 +143,7 @@ DATE_FORMAT = 'd F Y'
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
