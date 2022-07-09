@@ -69,16 +69,19 @@
                     <a class="nav-link" href="/contacts/">Contacts</a>
                 </li>
             </ul>
-            {#      <form class="d-flex" role="search">#}
-            {#        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">#}
-            {#        <button class="btn btn-outline-success" type="submit">Search</button>#}
-            {#      </form>#}
+            {% if user.is_authenticated %}
+                <img src="{{ user.profile.avatar.url }}" class="rounded-circle" width="50" height="50" alt="avatar">
+            {% endif %}
             <div class="d-flex">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="student-dropdown"
                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Account
+                            {% if user.is_authenticated %}
+                                {{ user.username }}
+                            {% else %}
+                                Account
+                            {% endif %}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="student-dropdown">
                             {% if user.is_authenticated %}
