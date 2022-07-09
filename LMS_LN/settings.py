@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'django_filters',
     'debug_toolbar',
+    'django.contrib.flatpages',
+    'django.contrib.sites',
+    'ckeditor',
 
     'core.apps.CoreConfig',
     'teachers.apps.TeachersConfig',
@@ -61,6 +64,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
     'core.middlewares.CalculateRequestTimeMiddleware',
 ]
 
@@ -77,6 +81,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'core.context_processors.params',
             ],
         },
     },
@@ -134,6 +139,10 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static'  # img/logo.png
 ]
+# STATIC_ROOT = BASE_DIR / 'static'
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -151,3 +160,6 @@ INTERNAL_IPS = [
 ]
 
 EMAIL_PORT = 1025
+
+SITE_ID = 1
+CKEDITOR_UPLOAD_PATH = 'uploads/'
